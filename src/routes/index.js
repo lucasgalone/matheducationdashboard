@@ -7,6 +7,9 @@ import SignUp from '../pages/SignUp';
 
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
+import Class from '../pages/Class';
+import Student from '../pages/Student';
+import AddStudent from '../pages/Student/add/index';
 
 export default function Routes() {
   return (
@@ -16,6 +19,9 @@ export default function Routes() {
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/class" component={Class} isPrivate />
+      <Route path="/student" exact component={Student} isPrivate />
+      <Route path="/student/add" component={AddStudent} isPrivate />
     </Switch>
   );
 }
