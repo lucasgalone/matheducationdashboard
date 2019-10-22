@@ -4,6 +4,7 @@ import { Container } from './styles';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { GoPlus, GoPencil, GoTrashcan } from 'react-icons/go';
 
 import { getTurmaRequest } from '../../store/modules/turma/actions';
 
@@ -38,9 +39,14 @@ export default function Turma() {
 
   return (
     <Container>
-      <Link to="/turma/add">Adicionar</Link>
-
       <h2>TABELA DE TURMAS</h2>
+      <Link to="/turma/add">
+        <span>
+          <button>
+            <GoPlus />
+          </button>
+        </span>
+      </Link>
       <table>
         <thead>
           <tr>
@@ -55,8 +61,12 @@ export default function Turma() {
               <td>{s.id}</td>
               <td>{s.nome}</td>
               <td>
-                <button onClick={() => handleEdit(s)}>Editar</button>
-                <button onClick={() => handleDelete(s.id)}>Excluir</button>
+                <button onClick={() => handleEdit(s)}>
+                  <GoPencil />
+                </button>
+                <button onClick={() => handleDelete(s.id)}>
+                  <GoTrashcan />
+                </button>
               </td>
             </tr>
           ))}

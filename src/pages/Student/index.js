@@ -4,6 +4,7 @@ import { Container } from './styles';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import { GoPlus, GoPencil, GoTrashcan } from 'react-icons/go';
 
 import { getStudentRequest } from '../../store/modules/student/actions';
 
@@ -33,9 +34,15 @@ export default function Student() {
 
   return (
     <Container>
-      <Link to="/student/add">Adicionar</Link>
-
       <h2>TABELA DE ALUNOS</h2>
+
+      <Link to="/student/add">
+        <span>
+          <button>
+            <GoPlus />
+          </button>
+        </span>
+      </Link>
       <table>
         <thead>
           <tr>
@@ -56,8 +63,12 @@ export default function Student() {
               <td>{s.score}</td>
               <td>{s.turma ? s.turma.nome : ''}</td>
               <td>
-                <button onClick={() => handleEdit(s)}>Editar</button>
-                <button onClick={() => handleDelete(s.id)}>Excluir</button>
+                <button onClick={() => handleEdit(s)}>
+                  <GoPencil />
+                </button>
+                <button onClick={() => handleDelete(s.id)}>
+                  <GoTrashcan />
+                </button>
               </td>
             </tr>
           ))}
