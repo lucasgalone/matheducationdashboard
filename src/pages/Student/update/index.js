@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input, Select } from '@rocketseat/unform';
 import * as Yup from 'yup';
@@ -7,18 +7,20 @@ import api from '../../../services/api';
 
 import { Container } from './styles';
 
-import { createStudentRequest } from '../../../store/modules/student/actions';
+import { updateStudentRequest } from '../../../store/modules/student/actions';
 
 const schema = Yup.object().shape({
+  id: Yup.string(),
   nome: Yup.string().required('O nome é obrigatório'),
   email: Yup.string()
     .email('Insira um e-mail válido')
     .required('O e-mail é obrigatório'),
   password: Yup.string().required('A senha é obrigatória'),
-  turma_id: Yup.number().required('A turma é obrigatória'),
+  turma_id: Yup.string().required('A turma é obrigatória'),
 });
 
-export default function AddStudent() {
+export default function UpdateStudent() {
+  const student = useSelector(state => state.student.dto);
   const dispatch = useDispatch();
   const [comboboxTurma, setComboboxTurma] = useState([]);
 
@@ -37,14 +39,14 @@ export default function AddStudent() {
     loadCombobox();
   }, []);
 
-  function handleSubmit({ nome, email, password, turma_id }) {
-    dispatch(createStudentRequest(nome, email, password, turma_id));
+  function handleSubmit({ id, nome, email, password, turma_id }) {
+    dispatch(updateStudentRequest(id, nome, email, password, turma_id));
   }
-
   return (
     <Container>
-      <h2>CADASTRO DE ALUNO</h2>
-      <Form schema={schema} onSubmit={handleSubmit}>
+      <h2>EDIÇÃO DE ALUNO</h2>
+      <Form initialData={student} schema={schema} onSubmit={handleSubmit}>
+        <Input name="id" hidden />
         <Input name="nome" placeholder="Nome completo" />
         <Input name="email" type="email" placeholder="E-mail" />
         <Input name="password" type="password" placeholder="Senha" />

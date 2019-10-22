@@ -35,31 +35,6 @@ export const Container = styled.div`
       }
     }
 
-    select {
-      background: rgba(0, 0, 0, 0.1);
-      border: 0;
-      border-radius: 4px;
-      height: 44px;
-      padding: 0 15px;
-      color: #fff;
-      margin: 0 0 10px;
-
-      option {
-        border: 0;
-        position: absolute;
-        list-style: none;
-        border: 1px solid linear-gradient(-90deg, #fd7a0a, #bf230a);
-        background-color: #bf230a;
-      }
-    }
-
-    hr {
-      border: 0;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.2);
-      margin: 10px 0 20px;
-    }
-
     button {
       margin: 5px 0 0;
       height: 44px;

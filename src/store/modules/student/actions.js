@@ -1,19 +1,27 @@
-export function createStudentRequest(nome, email, password, turma) {
+export function createStudentRequest(nome, email, password, turma_id) {
   return {
     type: '@student/CREATE_STUDENT_REQUEST',
-    payload: { nome, email, password, turma },
+    payload: { nome, email, password, turma_id },
   };
 }
 
-export function studentSuccess(student) {
+export function updateStudentRequest(id, nome, email, password, turma_id) {
   return {
-    type: '@student/STUDENT_SUCCESS',
-    payload: { student },
+    type: '@student/UPDATE_STUDENT_REQUEST',
+    payload: { id, nome, email, password, turma_id },
   };
 }
 
-export function studentFailure() {
+export function getStudentRequest(id) {
   return {
-    type: '@student/FAILURE_REQUEST',
+    type: '@student/GET_STUDENT_REQUEST',
+    payload: { id },
+  };
+}
+
+export function setStudentRequest(data) {
+  return {
+    type: '@student/SET_STUDENT_SUCCESS',
+    payload: { data },
   };
 }
